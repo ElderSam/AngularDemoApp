@@ -1,0 +1,35 @@
+<h2>Products</h2>
+
+<div *ngFor="let product of products"> <!-- para a lista de produtos-->
+ <h3>
+    <a [title]="product.name + ' details'">
+      {{ product.name }}
+    </a>
+  </h3>
+
+  <p *ngIf="product.description">
+    Description: {{ product.description }}
+  </p>
+
+  <p *ngIf="product.price">
+    <b> Price: $ {{ product.price }} </b>
+  </p>
+
+  <!-- quando clicado, chama a função share() do arquivo .ts -->
+  <button (click)="share()"> 
+    Share
+  </button>
+<!-- Para incluir o novo componente, use seu seletor ( app-product-alert)- o botão notity me só vai aparecer de acordo com a regra do arquivo product-alerts-component.html, ou seja (preço > 700)-->
+  <app-product-alerts
+    [product]="product" 
+     (notify)="onNotify()">
+     <!-- Passe o produto atual como entrada para o componente usando a vinculação de propriedade. -->
+     <!-- notity -> para receber a saída do componente de alertas do produto. -->
+  </app-product-alerts>
+
+</div>
+<!-- 
+Copyright Google LLC. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that
+can be found in the LICENSE file at http://angular.io/license
+-->
